@@ -2,9 +2,6 @@ import streamlit as st
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# --- 1. SETUP THE FAQ DATASET ---
-# You can customize these questions and answers to fit any topic!
-# --- 1. SETUP THE FAQ DATASET ---
 faq_data = [
     {
         "question": "What is CodeAlpha?",
@@ -26,7 +23,7 @@ faq_data = [
         "question": "Can I get a completion certificate if I only finish one task?",
         "answer": "To successfully clear the internship and receive a certificate, you are generally required to complete and submit all the assigned mandatory tasks within the given deadline."
     },
-    # 👇 ADD THESE NEW FAQ PAIRS HERE 👇
+   
     {
         "question": "What is cosine similarity?",
         "answer": "Cosine similarity is a metric used to measure how similar two text documents are, irrespective of their size. Mathematically, it measures the cosine of the angle between two vectors projected in a multi-dimensional space. The closer the score is to 1, the more similar the texts are."
@@ -36,8 +33,6 @@ faq_data = [
         "answer": "This chatbot uses TF-IDF Vectorization to convert your text input into mathematical vectors, and then applies Cosine Similarity to find which question in its database matches your question the closest!"
     }
 ]
-
-# Extract lists of just questions and just answers for processing
 faq_questions = [item["question"] for item in faq_data]
 faq_answers = [item["answer"] for item in faq_data]
 
@@ -76,13 +71,11 @@ st.title("🤖 AI Chatbot for FAQs")
 st.write("Ask me anything about the CodeAlpha internship overview, tasks, or perks!")
 st.divider()
 
-# Initialize session state for chat history so it doesn't clear on every refresh
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {"role": "assistant", "content": "Hello! I am your CodeAlpha support assistant. How can I help you today?"}
     ]
 
-# Display all previous messages in the chat UI
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])

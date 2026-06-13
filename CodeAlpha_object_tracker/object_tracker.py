@@ -44,16 +44,12 @@ def run_object_tracking(video_source, output_name="tracked_output.mp4"):
 
         # Write out the frame to the saved compilation path
         out.write(annotated_frame)
-
-        # Display the video overlay feed in real-time
         cv2.imshow("Ultralytics YOLO Real-Time Tracker", annotated_frame)
 
         # Early termination trigger by hitting the 'q' key
         if cv2.waitKey(1) & 0xFF == ord('q'):
             print("Tracking session canceled manually by user request.")
             break
-
-    # Clean up environmental processing buffers
     cap.release()
     out.release()
     cv2.destroyAllWindows()
